@@ -1,266 +1,280 @@
-# Godot MCP Server
+<div align="center">
+
+# 🎮 Godot MCP Server
+
+**AI-Powered Development Assistant for Godot Game Engine**
 
 [![npm version](https://badge.fury.io/js/kooix-godot-mcp.svg)](https://badge.fury.io/js/kooix-godot-mcp)
 [![npm downloads](https://img.shields.io/npm/dm/kooix-godot-mcp.svg)](https://npmjs.com/package/kooix-godot-mcp)
 [![GitHub license](https://img.shields.io/github/license/telagod/kooix-godot-mcp.svg)](https://github.com/telagod/kooix-godot-mcp/blob/main/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/telagod/kooix-godot-mcp.svg)](https://github.com/telagod/kooix-godot-mcp/issues)
 [![Build Status](https://github.com/telagod/kooix-godot-mcp/workflows/CI%2FCD%20Pipeline/badge.svg)](https://github.com/telagod/kooix-godot-mcp/actions)
 
-A comprehensive Model Context Protocol (MCP) server for Godot game engine development assistance. This server provides AI assistants like Claude with powerful tools to analyze, understand, and assist with Godot projects.
+[English](README.md) | [中文](README_CN.md)
 
-## Features
+*Transform your Godot development with intelligent AI assistance*
 
-### 🔍 Project Analysis
-- **Project Information**: Extract project configuration, autoloads, and metadata
-- **Scene Analysis**: Parse and analyze scene structures and node hierarchies  
-- **Script Analysis**: Examine GDScript files for methods, properties, and signals
-- **Architecture Overview**: Analyze overall game architecture and design patterns
+</div>
 
-### 🛠️ Code Generation
-- **Script Templates**: Generate common GDScript patterns (Singleton, Player, UI, Manager, GameObject)
-- **UI Components**: Create complete UI component templates (Menu, Dialog, HUD, Card, Board)
-- **Network Systems**: Generate multiplayer and REST API networking code
+---
 
-### ⚡ Performance Optimization  
-- **Performance Analysis**: Identify common performance issues in scripts
-- **Optimization Recommendations**: Get specific suggestions for improving game performance
-- **Best Practices**: Code examples following Godot best practices
+## 🤔 The Problem
 
-### 🐛 Debug and Error Analysis
-- **Error Log Analysis**: Parse and analyze Godot error logs with intelligent suggestions
-- **Debug Sessions**: Monitor running games for real-time error tracking
-- **Crash Analysis**: Analyze crash dumps and provide detailed debugging guidance
-- **Project Health**: Comprehensive project diagnostics and health scoring
-- **Smart Fix Suggestions**: Context-aware error resolution recommendations
+Working with Godot can be challenging when you need to:
+- ❌ Analyze complex project structures and scene hierarchies
+- ❌ Debug cryptic error messages and performance issues  
+- ❌ Generate boilerplate code following Godot best practices
+- ❌ Understand legacy codebases or inherited projects
+- ❌ Optimize game performance without deep engine knowledge
 
-### 🎮 Game Development Tools
-- **Manager Analysis**: Evaluate singleton managers and their responsibilities
-- **Scene Structure**: Understand project organization and flow
-- **Design Pattern Detection**: Identify and recommend design patterns
+## ✨ The Solution
 
-## Installation
+**Godot MCP Server** bridges the gap between AI assistants and your Godot projects, providing:
 
-### Global Installation from NPM (Recommended)
+- ✅ **Intelligent Project Analysis**: Deep understanding of your game architecture
+- ✅ **Smart Error Diagnosis**: AI-powered debugging with actionable suggestions
+- ✅ **Code Generation**: Templates and patterns following Godot conventions
+- ✅ **Performance Insights**: Automated optimization recommendations
+- ✅ **Architecture Guidance**: Best practices for scalable game development
+
+---
+
+## 🚀 Quick Start
+
+### Install via NPM
 ```bash
 npm install -g kooix-godot-mcp
 ```
 
-### Alternative Installation Methods
+### Add to Claude Desktop
+<details>
+<summary><strong>Click to expand installation steps</strong></summary>
 
-#### From GitHub Packages
+#### Automatic Setup (Recommended)
 ```bash
-npm install -g @telagod/kooix-godot-mcp
+claude mcp add godot-mcp kooix-godot-mcp
 ```
 
-#### From Source
-```bash
-git clone https://github.com/telagod/kooix-godot-mcp.git
-cd kooix-godot-mcp
-npm install
-npm run build
-npm install -g .
-```
+#### Manual Configuration
+Add to your Claude Desktop config file:
 
-#### Using npx (No Installation)
-```bash
-npx kooix-godot-mcp --project /path/to/your/godot/project
-```
+**Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+**macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+**Linux**: `~/.config/claude/claude_desktop_config.json`
 
-## Usage
-
-### With Claude Desktop
-Add to your Claude Desktop configuration:
 ```json
 {
   "mcpServers": {
     "godot-mcp": {
-      "type": "stdio",
-      "command": "kooix-godot-mcp",
-      "args": ["--project", "/path/to/your/godot/project"],
-      "env": {}
+      "command": "godot-mcp",
+      "args": ["--project", "/path/to/your/godot/project"]
     }
   }
 }
 ```
+</details>
 
-### Command Line
-```bash
-# Analyze current directory
-kooix-godot-mcp
+### Alternative Installation Methods
 
-# Analyze specific project
-kooix-godot-mcp --project /path/to/godot/project
-
-# Show help
-kooix-godot-mcp --help
-```
-
-### Quick Setup for Claude Desktop
-```bash
-# Install globally
-npm install -g kooix-godot-mcp
-
-# Add to Claude (replace with your project path)
-claude mcp add godot-mcp kooix-godot-mcp --project "/path/to/your/godot/project"
-```
-
-## Available Tools
-
-### Project Analysis Tools
-- `get_project_info` - Get comprehensive project information
-- `list_scenes` - List all scenes with optional detailed analysis
-- `list_scripts` - List all GDScript files with optional code analysis
-- `analyze_scene` - Deep dive into specific scene structure
-- `analyze_script` - Analyze specific script file
-
-### Code Generation Tools  
-- `generate_script_template` - Create script templates for common patterns
-- `generate_ui_component` - Generate complete UI component systems
-- `generate_network_system` - Create networking code templates
-
-### Game Development Tools
-- `analyze_game_architecture` - Comprehensive architecture analysis
-- `optimize_game_performance` - Performance analysis and recommendations
-
-### Debug and Error Analysis Tools
-- `analyze_error_log` - Analyze Godot error logs and provide fix suggestions
-- `start_debug_session` - Start real-time error monitoring session
-- `stop_debug_session` - Stop debug session and get comprehensive results
-- `get_debug_session` - Query active debug session status
-- `analyze_crash_dump` - Analyze crash information with debugging guidance
-- `diagnose_project` - Comprehensive project health diagnosis
-- `suggest_fix` - Get specific fix suggestions for error messages
-
-## Examples
-
-### Analyzing Your Project
-```javascript
-// Get project overview
-await mcp.callTool('get_project_info');
-
-// Analyze game architecture
-await mcp.callTool('analyze_game_architecture');
-
-// Check performance issues  
-await mcp.callTool('optimize_game_performance');
-
-// Diagnose project health
-await mcp.callTool('diagnose_project');
-```
-
-### Debugging and Error Analysis
-```javascript
-// Analyze error logs
-await mcp.callTool('analyze_error_log', {
-  logContent: "ERROR: Null reference at: Player.gd:45"
-});
-
-// Start debug session
-await mcp.callTool('start_debug_session');
-
-// Get fix suggestions
-await mcp.callTool('suggest_fix', {
-  errorMessage: "Invalid get index 'health' (on base: 'null instance')",
-  context: "Player character script"
-});
-
-// Analyze crash dump
-await mcp.callTool('analyze_crash_dump', {
-  crashInfo: "Segmentation fault at Player.gd:23"
-});
-```
-
-### Generating Code
-```javascript
-// Create a player controller
-await mcp.callTool('generate_script_template', {
-  templateType: 'player',
-  className: 'PlayerController',
-  extendsClass: 'CharacterBody2D'
-});
-
-// Generate a menu system
-await mcp.callTool('generate_ui_component', {
-  componentType: 'menu', 
-  componentName: 'MainMenu'
-});
-
-// Create multiplayer networking
-await mcp.callTool('generate_network_system', {
-  networkType: 'multiplayer'
-});
-```
-
-## Supported Project Types
-
-This MCP server is designed to work with any Godot project, but provides enhanced analysis for:
-
-- 🎲 Board Games (like Monopoly)  
-- 🎮 RPG/Roguelike Games
-- 🌐 Multiplayer Games
-- 📱 Mobile Games
-- 🎨 ASCII/Pixel Art Games
-
-## Architecture
-
-```
-src/
-├── index.ts              # Main MCP server
-├── tools/               
-│   ├── project-analyzer.ts   # Project analysis
-│   ├── scene-manager.ts      # Scene operations  
-│   ├── script-manager.ts     # Script analysis
-│   └── game-dev-tools.ts     # Game dev utilities
-├── types/
-│   └── index.ts          # Type definitions
-└── utils/               # Utility functions
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## Development
+<details>
+<summary><strong>From GitHub Packages</strong></summary>
 
 ```bash
-# Install dependencies
+npm install -g @telagod/kooix-godot-mcp
+```
+</details>
+
+<details>
+<summary><strong>From Source</strong></summary>
+
+```bash
+git clone https://github.com/telagod/kooix-godot-mcp.git
+cd kooix-godot-mcp
+npm install && npm run build
+npm install -g .
+```
+</details>
+
+<details>
+<summary><strong>Using npx (No Installation)</strong></summary>
+
+```bash
+npx kooix-godot-mcp --project /path/to/your/project
+```
+</details>
+
+---
+
+## 🛠️ Features
+
+### 📊 Project Intelligence
+- **Project Configuration**: Extract settings, autoloads, and metadata
+- **Scene Architecture**: Analyze node hierarchies and scene relationships
+- **Script Analysis**: Parse GDScript for methods, properties, and signals
+- **Design Patterns**: Identify architectural patterns and suggest improvements
+
+### 🎨 Code Generation
+- **Smart Templates**: Generate classes following Godot conventions
+  - 🎯 Player Controllers with input handling
+  - 🏗️ Manager Singletons for game systems
+  - 🖼️ UI Components (Menus, Dialogs, HUD)
+  - 🎮 Game Objects with lifecycle management
+
+### 🌐 Network Systems
+- **Multiplayer Templates**: Ready-to-use networking code
+- **REST API Integration**: HTTP client implementations
+- **State Synchronization**: Patterns for networked games
+
+### ⚡ Performance Optimization
+- **Performance Profiling**: Identify bottlenecks in your code
+- **Memory Management**: Object pooling and resource optimization
+- **Best Practices**: Automated code quality suggestions
+- **Performance Metrics**: Real-time analysis of game systems
+
+### 🐛 Debug & Troubleshooting
+- **Error Analysis**: Intelligent parsing of Godot logs
+- **Crash Diagnostics**: Root cause analysis for game crashes
+- **Performance Issues**: Memory leaks and frame rate problems
+- **Code Quality**: Static analysis and improvement suggestions
+
+---
+
+## 🎯 Use Cases
+
+### For Beginners
+- 📚 Learn Godot best practices through generated examples
+- 🔍 Understand existing project structures
+- 🎓 Get explanations for complex game development concepts
+
+### For Experienced Developers
+- 🚀 Accelerate development with smart code generation
+- 🔧 Debug complex issues with AI-powered analysis  
+- 📈 Optimize performance with detailed recommendations
+- 🏗️ Architect scalable game systems
+
+### For Teams
+- 📋 Analyze and document legacy codebases
+- 🔄 Maintain consistent coding standards
+- 🤝 Onboard new team members faster
+- 📊 Generate project health reports
+
+---
+
+## 🤖 Available Tools
+
+| Tool | Description | Use Case |
+|------|-------------|----------|
+| `get-project-info` | Extract project configuration and metadata | Understanding project structure |
+| `list-scenes` | Analyze scene files and hierarchies | Scene management and organization |
+| `analyze-scene` | Deep analysis of specific scene files | Debugging scene-related issues |
+| `list-scripts` | Inventory all GDScript files | Code organization and refactoring |
+| `analyze-script` | Parse script structure and patterns | Code quality and optimization |
+| `generate-script-template` | Create common script patterns | Rapid development and consistency |
+| `analyze-game-architecture` | High-level architectural analysis | System design and planning |
+| `generate-ui-component` | Create UI component templates | Interface development |
+| `optimize-game-performance` | Performance analysis and suggestions | Game optimization |
+| `generate-network-system` | Networking code templates | Multiplayer development |
+| `debug-project-errors` | Error log analysis and solutions | Troubleshooting and debugging |
+| `start-debug-session` | Real-time debugging session | Interactive problem solving |
+| `analyze-debug-logs` | Parse and interpret log files | Post-mortem analysis |
+| `get-performance-insights` | Performance profiling and metrics | Optimization planning |
+| `check-project-health` | Overall project quality assessment | Maintenance and planning |
+
+---
+
+## 📖 Documentation & Examples
+
+### Quick Examples
+
+<details>
+<summary><strong>Generate a Player Controller</strong></summary>
+
+```gdscript
+extends CharacterBody2D
+class_name PlayerController
+
+@export var speed: float = 300.0
+@export var health: int = 100
+
+signal health_changed(new_health: int)
+signal player_died
+
+var _input_vector: Vector2
+var _is_alive: bool = true
+
+func _ready() -> void:
+    initialize_player()
+
+func _process(delta: float) -> void:
+    if _is_alive:
+        handle_input()
+        update_movement(delta)
+
+# ... complete implementation generated
+```
+</details>
+
+<details>
+<summary><strong>Create UI Components</strong></summary>
+
+```gdscript
+extends Control
+class_name GameHUD
+
+@export var health_bar: ProgressBar
+@export var score_label: Label
+@export var timer_label: Label
+
+func update_health(health: int) -> void:
+    if health_bar:
+        health_bar.value = health
+
+# ... complete HUD system with animations
+```
+</details>
+
+### Advanced Usage
+
+- 🎯 [Project Analysis Guide](docs/project-analysis.md)
+- 🎨 [Code Generation Examples](docs/code-generation.md)  
+- ⚡ [Performance Optimization](docs/performance.md)
+- 🐛 [Debugging Workflows](docs/debugging.md)
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+### Development Setup
+```bash
+git clone https://github.com/telagod/kooix-godot-mcp.git
+cd kooix-godot-mcp
 npm install
-
-# Build the project
-npm run build
-
-# Development mode with auto-rebuild
 npm run dev
-
-# Run tests
-npm test
-
-# Lint code
-npm run lint
 ```
 
-## Requirements
+---
 
-- Node.js 18.0.0 or higher
-- Godot 3.5+ or 4.0+ project
-- MCP-compatible AI assistant (Claude Desktop, Cursor, etc.)
+## 📄 License
 
-## License
+MIT License - see [LICENSE](LICENSE) file for details.
 
-MIT License - see LICENSE file for details
+---
 
-## Related Projects
+## 🆘 Support
 
-- [Model Context Protocol](https://github.com/modelcontextprotocol/specification)
-- [Claude Desktop](https://claude.ai/download)
-- [Godot Engine](https://godotengine.org/)
+- 📖 [Documentation](https://github.com/telagod/kooix-godot-mcp/wiki)
+- 🐛 [Report Issues](https://github.com/telagod/kooix-godot-mcp/issues)
+- 💬 [Discussions](https://github.com/telagod/kooix-godot-mcp/discussions)
 
-## Support
+---
 
-- 📝 [GitHub Issues](https://github.com/yourusername/godot-mcp/issues)
-- 📖 [Documentation](https://github.com/yourusername/godot-mcp/wiki)
-- 💬 [Discussions](https://github.com/yourusername/godot-mcp/discussions)
+<div align="center">
+
+**Made with ❤️ for the Godot Community**
+
+*Supercharge your game development with AI assistance*
+
+[![Star on GitHub](https://img.shields.io/github/stars/telagod/kooix-godot-mcp?style=social)](https://github.com/telagod/kooix-godot-mcp)
+
+</div>
