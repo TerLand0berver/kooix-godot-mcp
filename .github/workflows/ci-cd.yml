@@ -163,7 +163,7 @@ jobs:
         
     - name: Configure GitHub Packages
       run: |
-        echo "@telagod:registry=https://npm.pkg.github.com" >> ~/.npmrc
+        echo "@terlandoberver:registry=https://npm.pkg.github.com" >> ~/.npmrc
         echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> ~/.npmrc
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -176,7 +176,7 @@ jobs:
       
     - name: Update package name for GitHub Packages
       run: |
-        sed -i 's/"name": "kooix-godot-mcp"/"name": "@telagod\/kooix-godot-mcp"/' package.json
+        sed -i 's/"name": "kooix-godot-mcp"/"name": "@terlandoberver\/kooix-godot-mcp"/' package.json
         
     - name: Verify .npmrc configuration
       run: |
