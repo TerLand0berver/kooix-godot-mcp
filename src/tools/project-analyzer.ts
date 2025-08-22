@@ -31,7 +31,7 @@ export class GodotProjectAnalyzer {
           statistics: stats,
         },
       };
-    } catch (error) {
+    } catch (_error) {
       return {
         success: false,
         error: error instanceof Error ? error.message : 'Failed to analyze project',
@@ -144,7 +144,7 @@ export class GodotProjectAnalyzer {
         assetCount: assets,
         projectSize: await this.getDirectorySize(),
       };
-    } catch (error) {
+    } catch (_error) {
       return {
         error: 'Failed to calculate project statistics',
       };

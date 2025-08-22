@@ -111,7 +111,7 @@ export class GameDevTools {
         managers,
         recommendations: this.getManagerRecommendations(managers),
       };
-    } catch {
+    } catch (_error) {
       return { count: 0, managers: [], recommendations: [] };
     }
   }
@@ -217,7 +217,7 @@ export class GameDevTools {
       }
 
       return structure;
-    } catch {
+    } catch (_error) {
       return structure;
     }
   }
@@ -299,7 +299,7 @@ export class GameDevTools {
     return template.call(this, componentName, options);
   }
 
-  private createMenuTemplate(name: string, options: any): any {
+  private createMenuTemplate(name: string, _options: any): any {
     return {
       script: `extends Control
 class_name ${name}
@@ -351,7 +351,7 @@ func _on_menu_action(action: String):
     };
   }
 
-  private createDialogTemplate(name: string, options: any): any {
+  private createDialogTemplate(name: string, _options: any): any {
     return {
       script: `extends AcceptDialog
 class_name ${name}
@@ -389,7 +389,7 @@ dialog.show_dialog("Confirm", "Are you sure?")`
     };
   }
 
-  private createHUDTemplate(name: string, options: any): any {
+  private createHUDTemplate(name: string, _options: any): any {
     return {
       script: `extends CanvasLayer
 class_name ${name}
@@ -462,7 +462,7 @@ func _ready():
     };
   }
 
-  private createCardTemplate(name: string, options: any): any {
+  private createCardTemplate(name: string, _options: any): any {
     return {
       script: `extends Control
 class_name ${name}
@@ -541,7 +541,7 @@ func _on_card_selected(card: ${name}):
     };
   }
 
-  private createBoardTemplate(name: string, options: any): any {
+  private createBoardTemplate(name: string, _options: any): any {
     return {
       script: `extends Control
 class_name ${name}
@@ -689,7 +689,7 @@ func return_object(obj):
 	_pool.append(obj)`
       });
 
-    } catch (error) {
+    } catch (_error) {
       issues.push("Could not analyze scripts for performance issues");
     }
 

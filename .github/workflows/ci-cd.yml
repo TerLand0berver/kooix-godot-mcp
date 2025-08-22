@@ -17,7 +17,7 @@ jobs:
     
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 21.x]
+        node-version: [20.x, 21.x]
     
     steps:
     - name: Checkout code
@@ -176,7 +176,7 @@ jobs:
       
     - name: Update package name for GitHub Packages
       run: |
-        sed -i 's/"name": "kooix-godot-mcp"/"name": "@terlandOberver\/kooix-godot-mcp"/' package.json
+        sed -i 's/"name": "kooix-godot-mcp"/"name": "@terland0berver\/kooix-godot-mcp"/' package.json
         
     - name: Verify .npmrc configuration
       run: |

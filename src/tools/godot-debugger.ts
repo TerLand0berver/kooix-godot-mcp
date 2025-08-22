@@ -626,7 +626,7 @@ export class GodotDebugger {
         const syntaxIssues = this.checkGDScriptSyntax(content, scriptFile);
         issues.push(...syntaxIssues);
       }
-    } catch (error) {
+    } catch (_error) {
       issues.push('Failed to check script syntax');
     }
 
@@ -665,21 +665,21 @@ export class GodotDebugger {
         const sceneIssues = this.validateScene(content, sceneFile);
         issues.push(...sceneIssues);
       }
-    } catch (error) {
+    } catch (_error) {
       issues.push('Failed to check scene integrity');
     }
 
     return { issues, count: issues.length };
   }
 
-  private validateScene(content: string, filePath: string): string[] {
+  private validateScene(content: string, _filePath: string): string[] {
     const issues: string[] = [];
 
     // Check for missing scripts
     const scriptMatches = content.match(/script\s*=\s*ExtResource\([^)]+\)/g);
     if (scriptMatches) {
-      for (const match of scriptMatches) {
-        // Could check if script files exist
+      for (const _match of scriptMatches) {
+        // Could check if script files exist (note: _match contains match info)
       }
     }
 
@@ -849,7 +849,7 @@ if scene:
     };
   }
 
-  private getFixSuggestions(errorPattern: any, context?: string): string[] {
+  private getFixSuggestions(errorPattern: any, _context?: string): string[] {
     const suggestions: string[] = [];
     
     switch (errorPattern.type) {
