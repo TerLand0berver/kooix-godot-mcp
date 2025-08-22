@@ -19,7 +19,7 @@ const warnings = [];
 
 // Check package.json
 console.log('📦 Validating package.json...');
-const packageJson = require('./package.json');
+const packageJson = require('../package.json');
 
 if (!packageJson.name) errors.push('Missing package name');
 if (!packageJson.version) errors.push('Missing package version');
