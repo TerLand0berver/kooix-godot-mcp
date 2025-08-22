@@ -1,0 +1,91 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version-type:
+        description: 'Version bump type'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      release-notes:
+        description: 'Release notes'
+        required: false
+        default: 'Bug fixes and improvements'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+        
+    - name: Configure Git
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run tests
+      run: |
+        npm run lint
+        npm run build
+        npm test
+        
+    - name: Bump version
+      id: version
+      run: |
+        NEW_VERSION=$(npm version ${{ github.event.inputs.version-type }} --no-git-tag-version)
+        echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_OUTPUT
+        echo "VERSION_NUMBER=${NEW_VERSION#v}" >> $GITHUB_OUTPUT
+        
+    - name: Update CHANGELOG
+      run: |
+        echo "## [${{ steps.version.outputs.VERSION_NUMBER }}] - $(date +%Y-%m-%d)" >> CHANGELOG.tmp
+        echo "" >> CHANGELOG.tmp
+        echo "${{ github.event.inputs.release-notes }}" >> CHANGELOG.tmp
+        echo "" >> CHANGELOG.tmp
+        if [ -f CHANGELOG.md ]; then
+          tail -n +2 CHANGELOG.md >> CHANGELOG.tmp
+        fi
+        mv CHANGELOG.tmp CHANGELOG.md
+        
+    - name: Commit changes
+      run: |
+        git add package.json CHANGELOG.md
+        git commit -m "chore: release ${{ steps.version.outputs.NEW_VERSION }}
+        
+        ${{ github.event.inputs.release-notes }}
+        
+        🚀 Generated with Claude Code"
+        
+    - name: Create and push tag
+      run: |
+        git tag ${{ steps.version.outputs.NEW_VERSION }}
+        git push origin main
+        git push origin ${{ steps.version.outputs.NEW_VERSION }}
+        
+    - name: Wait for CI to complete
+      run: sleep 30
+      
+    - name: Check if release was successful
+      run: |
+        echo "Release ${{ steps.version.outputs.NEW_VERSION }} initiated!"
+        echo "Check the CI/CD pipeline for NPM publication status."
+        echo "NPM package will be available at: https://www.npmjs.com/package/kooix-godot-mcp"

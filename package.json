@@ -1,7 +1,7 @@
 {
-  "name": "godot-mcp",
+  "name": "kooix-godot-mcp",
   "version": "1.1.0",
-  "description": "Model Context Protocol server for Godot game engine development assistance",
+  "description": "A comprehensive Model Context Protocol server for Godot game engine development assistance with AI-powered debugging, code generation, and project analysis",
   "main": "dist/index.js",
   "bin": {
     "godot-mcp": "dist/index.js"
@@ -12,17 +12,43 @@
     "start": "node dist/index.js",
     "test": "jest",
     "lint": "eslint src/**/*.ts",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "prepublishOnly": "npm run clean && npm run build && node scripts/pre-publish.js",
+    "postpublish": "echo 'Published to npm successfully! Install with: npm install -g kooix-godot-mcp'",
+    "validate": "node scripts/pre-publish.js",
+    "release:patch": "npm version patch && git push && git push --tags",
+    "release:minor": "npm version minor && git push && git push --tags",
+    "release:major": "npm version major && git push && git push --tags"
   },
   "keywords": [
     "mcp",
     "model-context-protocol",
     "godot",
     "game-development",
-    "ai-assistant"
+    "ai-assistant",
+    "debugging",
+    "code-generation",
+    "claude",
+    "cursor",
+    "typescript",
+    "gamedev",
+    "ai-tools"
   ],
-  "author": "",
+  "author": "TerLand0berver",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TerLand0berver/kooix-godot-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TerLand0berver/kooix-godot-mcp/issues"
+  },
+  "homepage": "https://github.com/TerLand0berver/kooix-godot-mcp#readme",
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE"
+  ],
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
     "commander": "^12.0.0",
@@ -45,5 +71,8 @@
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -1,5 +1,11 @@
 # Godot MCP Server
 
+[![npm version](https://badge.fury.io/js/kooix-godot-mcp.svg)](https://badge.fury.io/js/kooix-godot-mcp)
+[![npm downloads](https://img.shields.io/npm/dm/kooix-godot-mcp.svg)](https://npmjs.com/package/kooix-godot-mcp)
+[![GitHub license](https://img.shields.io/github/license/TerLand0berver/kooix-godot-mcp.svg)](https://github.com/TerLand0berver/kooix-godot-mcp/blob/main/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/TerLand0berver/kooix-godot-mcp.svg)](https://github.com/TerLand0berver/kooix-godot-mcp/issues)
+[![Build Status](https://github.com/TerLand0berver/kooix-godot-mcp/workflows/CI%2FCD%20Pipeline/badge.svg)](https://github.com/TerLand0berver/kooix-godot-mcp/actions)
+
 A comprehensive Model Context Protocol (MCP) server for Godot game engine development assistance. This server provides AI assistants like Claude with powerful tools to analyze, understand, and assist with Godot projects.
 
 ## Features
@@ -34,18 +40,25 @@ A comprehensive Model Context Protocol (MCP) server for Godot game engine develo
 
 ## Installation
 
-### Global Installation
+### Global Installation from NPM (Recommended)
 ```bash
-npm install -g godot-mcp
+npm install -g kooix-godot-mcp
 ```
 
-### Local Development
+### Alternative Installation Methods
+
+#### From Source
 ```bash
-git clone https://github.com/yourusername/godot-mcp.git
-cd godot-mcp
+git clone https://github.com/TerLand0berver/kooix-godot-mcp.git
+cd kooix-godot-mcp
 npm install
 npm run build
 npm install -g .
+```
+
+#### Using npx (No Installation)
+```bash
+npx kooix-godot-mcp --project /path/to/your/godot/project
 ```
 
 ## Usage
@@ -57,7 +70,7 @@ Add to your Claude Desktop configuration:
   "mcpServers": {
     "godot-mcp": {
       "type": "stdio",
-      "command": "godot-mcp",
+      "command": "kooix-godot-mcp",
       "args": ["--project", "/path/to/your/godot/project"],
       "env": {}
     }
@@ -68,10 +81,22 @@ Add to your Claude Desktop configuration:
 ### Command Line
 ```bash
 # Analyze current directory
-godot-mcp
+kooix-godot-mcp
 
 # Analyze specific project
-godot-mcp --project /path/to/godot/project
+kooix-godot-mcp --project /path/to/godot/project
+
+# Show help
+kooix-godot-mcp --help
+```
+
+### Quick Setup for Claude Desktop
+```bash
+# Install globally
+npm install -g kooix-godot-mcp
+
+# Add to Claude (replace with your project path)
+claude mcp add godot-mcp kooix-godot-mcp --project "/path/to/your/godot/project"
 ```
 
 ## Available Tools
