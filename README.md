@@ -2,9 +2,9 @@
 
 [![npm version](https://badge.fury.io/js/kooix-godot-mcp.svg)](https://badge.fury.io/js/kooix-godot-mcp)
 [![npm downloads](https://img.shields.io/npm/dm/kooix-godot-mcp.svg)](https://npmjs.com/package/kooix-godot-mcp)
-[![GitHub license](https://img.shields.io/github/license/TerLand0berver/kooix-godot-mcp.svg)](https://github.com/TerLand0berver/kooix-godot-mcp/blob/main/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/TerLand0berver/kooix-godot-mcp.svg)](https://github.com/TerLand0berver/kooix-godot-mcp/issues)
-[![Build Status](https://github.com/TerLand0berver/kooix-godot-mcp/workflows/CI%2FCD%20Pipeline/badge.svg)](https://github.com/TerLand0berver/kooix-godot-mcp/actions)
+[![GitHub license](https://img.shields.io/github/license/telagod/kooix-godot-mcp.svg)](https://github.com/telagod/kooix-godot-mcp/blob/main/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/telagod/kooix-godot-mcp.svg)](https://github.com/telagod/kooix-godot-mcp/issues)
+[![Build Status](https://github.com/telagod/kooix-godot-mcp/workflows/CI%2FCD%20Pipeline/badge.svg)](https://github.com/telagod/kooix-godot-mcp/actions)
 
 A comprehensive Model Context Protocol (MCP) server for Godot game engine development assistance. This server provides AI assistants like Claude with powerful tools to analyze, understand, and assist with Godot projects.
 
@@ -47,9 +47,14 @@ npm install -g kooix-godot-mcp
 
 ### Alternative Installation Methods
 
+#### From GitHub Packages
+```bash
+npm install -g @telagod/kooix-godot-mcp
+```
+
 #### From Source
 ```bash
-git clone https://github.com/TerLand0berver/kooix-godot-mcp.git
+git clone https://github.com/telagod/kooix-godot-mcp.git
 cd kooix-godot-mcp
 npm install
 npm run build
