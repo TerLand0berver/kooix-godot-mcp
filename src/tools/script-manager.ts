@@ -167,7 +167,7 @@ export class GodotScriptManager {
 
   private parseProperty(line: string, previousLine?: string): GodotProperty | null {
     let exported = false;
-    let actualLine = line;
+    const actualLine = line;
     
     // Check if previous line has @export
     if (previousLine && previousLine.trim().startsWith('@export')) {

@@ -1,6 +1,6 @@
 import fs from 'fs-extra';
 import path from 'path';
-import { GodotProject, McpToolResponse } from '../types/index.js';
+import { McpToolResponse } from '../types/index.js';
 
 export class GameDevTools {
   constructor(private projectPath: string) {}
