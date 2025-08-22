@@ -88,6 +88,13 @@ jobs:
         echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
         echo "always-auth=true" >> ~/.npmrc
         
+    - name: Verify NPM authentication
+      run: |
+        echo "Checking NPM configuration..."
+        npm config list
+        echo "Checking NPM authentication..."
+        npm whoami || echo "Failed to authenticate with NPM"
+        
     - name: Install dependencies
       run: npm ci
       
