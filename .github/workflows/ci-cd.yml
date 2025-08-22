@@ -178,7 +178,14 @@ jobs:
       run: |
         sed -i 's/"name": "kooix-godot-mcp"/"name": "@telagod\/kooix-godot-mcp"/' package.json
         
+    - name: Verify .npmrc configuration
+      run: |
+        echo "Current .npmrc content:"
+        cat ~/.npmrc
+        echo "Package name after modification:"
+        grep '"name"' package.json
+        
     - name: Publish to GitHub Packages
-      run: npm publish
+      run: npm publish --registry=https://npm.pkg.github.com
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
