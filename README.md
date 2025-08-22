@@ -20,6 +20,13 @@ A comprehensive Model Context Protocol (MCP) server for Godot game engine develo
 - **Optimization Recommendations**: Get specific suggestions for improving game performance
 - **Best Practices**: Code examples following Godot best practices
 
+### 🐛 Debug and Error Analysis
+- **Error Log Analysis**: Parse and analyze Godot error logs with intelligent suggestions
+- **Debug Sessions**: Monitor running games for real-time error tracking
+- **Crash Analysis**: Analyze crash dumps and provide detailed debugging guidance
+- **Project Health**: Comprehensive project diagnostics and health scoring
+- **Smart Fix Suggestions**: Context-aware error resolution recommendations
+
 ### 🎮 Game Development Tools
 - **Manager Analysis**: Evaluate singleton managers and their responsibilities
 - **Scene Structure**: Understand project organization and flow
@@ -85,6 +92,15 @@ godot-mcp --project /path/to/godot/project
 - `analyze_game_architecture` - Comprehensive architecture analysis
 - `optimize_game_performance` - Performance analysis and recommendations
 
+### Debug and Error Analysis Tools
+- `analyze_error_log` - Analyze Godot error logs and provide fix suggestions
+- `start_debug_session` - Start real-time error monitoring session
+- `stop_debug_session` - Stop debug session and get comprehensive results
+- `get_debug_session` - Query active debug session status
+- `analyze_crash_dump` - Analyze crash information with debugging guidance
+- `diagnose_project` - Comprehensive project health diagnosis
+- `suggest_fix` - Get specific fix suggestions for error messages
+
 ## Examples
 
 ### Analyzing Your Project
@@ -97,6 +113,31 @@ await mcp.callTool('analyze_game_architecture');
 
 // Check performance issues  
 await mcp.callTool('optimize_game_performance');
+
+// Diagnose project health
+await mcp.callTool('diagnose_project');
+```
+
+### Debugging and Error Analysis
+```javascript
+// Analyze error logs
+await mcp.callTool('analyze_error_log', {
+  logContent: "ERROR: Null reference at: Player.gd:45"
+});
+
+// Start debug session
+await mcp.callTool('start_debug_session');
+
+// Get fix suggestions
+await mcp.callTool('suggest_fix', {
+  errorMessage: "Invalid get index 'health' (on base: 'null instance')",
+  context: "Player character script"
+});
+
+// Analyze crash dump
+await mcp.callTool('analyze_crash_dump', {
+  crashInfo: "Segmentation fault at Player.gd:23"
+});
 ```
 
 ### Generating Code

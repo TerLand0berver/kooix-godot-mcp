@@ -13,6 +13,7 @@ import { GodotProjectAnalyzer } from './tools/project-analyzer.js';
 import { GodotSceneManager } from './tools/scene-manager.js';
 import { GodotScriptManager } from './tools/script-manager.js';
 import { GameDevTools } from './tools/game-dev-tools.js';
+import { GodotDebugger } from './tools/godot-debugger.js';
 import { McpToolRequest, McpToolResponse } from './types/index.js';
 
 class GodotMcpServer {
@@ -22,6 +23,7 @@ class GodotMcpServer {
   private sceneManager: GodotSceneManager;
   private scriptManager: GodotScriptManager;
   private gameDevTools: GameDevTools;
+  private debugger: GodotDebugger;
 
   constructor(projectPath: string = process.cwd()) {
     this.projectPath = path.resolve(projectPath);
@@ -38,6 +40,7 @@ class GodotMcpServer {
     this.sceneManager = new GodotSceneManager(this.projectPath);
     this.scriptManager = new GodotScriptManager(this.projectPath);
     this.gameDevTools = new GameDevTools(this.projectPath);
+    this.debugger = new GodotDebugger(this.projectPath);
 
     this.setupHandlers();
   }
@@ -230,6 +233,101 @@ class GodotMcpServer {
           required: ['networkType'],
         },
       },
+      // Debug and Error Analysis Tools
+      {
+        name: 'analyze_error_log',
+        description: 'Analyze Godot error logs and provide suggestions for fixes',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            logContent: {
+              type: 'string',
+              description: 'Error log content to analyze (optional - will try to find log file)',
+            },
+          },
+        },
+      },
+      {
+        name: 'start_debug_session',
+        description: 'Start a debug session to monitor errors and warnings',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            sessionId: {
+              type: 'string',
+              description: 'Optional custom session ID',
+            },
+          },
+        },
+      },
+      {
+        name: 'stop_debug_session',
+        description: 'Stop an active debug session and get results',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            sessionId: {
+              type: 'string',
+              description: 'Debug session ID to stop',
+            },
+          },
+          required: ['sessionId'],
+        },
+      },
+      {
+        name: 'get_debug_session',
+        description: 'Get information about an active debug session',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            sessionId: {
+              type: 'string',
+              description: 'Debug session ID to query',
+            },
+          },
+          required: ['sessionId'],
+        },
+      },
+      {
+        name: 'analyze_crash_dump',
+        description: 'Analyze crash information and provide debugging guidance',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            crashInfo: {
+              type: 'string',
+              description: 'Crash dump or error information',
+            },
+          },
+          required: ['crashInfo'],
+        },
+      },
+      {
+        name: 'diagnose_project',
+        description: 'Perform comprehensive project health diagnosis',
+        inputSchema: {
+          type: 'object',
+          properties: {},
+        },
+      },
+      {
+        name: 'suggest_fix',
+        description: 'Get specific fix suggestions for error messages',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            errorMessage: {
+              type: 'string',
+              description: 'The error message to analyze',
+            },
+            context: {
+              type: 'string',
+              description: 'Additional context about the error (optional)',
+            },
+          },
+          required: ['errorMessage'],
+        },
+      },
     ];
   }
 
@@ -272,6 +370,27 @@ class GodotMcpServer {
 
       case 'generate_network_system':
         return await this.gameDevTools.generateNetworkSystem(request.arguments.networkType);
+
+      case 'analyze_error_log':
+        return await this.debugger.analyzeErrorLog(request.arguments.logContent);
+
+      case 'start_debug_session':
+        return await this.debugger.startDebugSession(request.arguments.sessionId);
+
+      case 'stop_debug_session':
+        return await this.debugger.stopDebugSession(request.arguments.sessionId);
+
+      case 'get_debug_session':
+        return await this.debugger.getDebugSession(request.arguments.sessionId);
+
+      case 'analyze_crash_dump':
+        return await this.debugger.analyzeCrashDump(request.arguments.crashInfo);
+
+      case 'diagnose_project':
+        return await this.debugger.diagnoseProject();
+
+      case 'suggest_fix':
+        return await this.debugger.suggestFix(request.arguments.errorMessage, request.arguments.context);
 
       default:
         throw new Error(`Unknown tool: ${request.toolName}`);

@@ -68,3 +68,37 @@ export interface McpToolResponse {
   data?: any;
   error?: string;
 }
+
+export interface GodotError {
+  type: 'error' | 'warning' | 'info';
+  message: string;
+  file?: string;
+  line?: number;
+  column?: number;
+  stackTrace?: string[];
+  timestamp?: string;
+  category?: string;
+}
+
+export interface DebugSession {
+  id: string;
+  startTime: Date;
+  endTime?: Date;
+  errors: GodotError[];
+  warnings: GodotError[];
+  status: 'running' | 'stopped' | 'crashed';
+  projectPath: string;
+}
+
+export interface DiagnosticResult {
+  health: string;
+  diagnostics: {
+    projectStructure: any;
+    scriptErrors: any;
+    sceneErrors: any;
+    dependencyIssues: any;
+    performanceIssues: any;
+  };
+  recommendations: string[];
+  priorityFixes: string[];
+}
