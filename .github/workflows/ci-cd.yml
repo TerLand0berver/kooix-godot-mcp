@@ -82,19 +82,6 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
         cache: 'npm'
         
-    - name: Configure NPM authentication
-      run: |
-        echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-        echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
-        echo "always-auth=true" >> ~/.npmrc
-        
-    - name: Verify NPM authentication
-      run: |
-        echo "Checking NPM configuration..."
-        npm config list
-        echo "Checking NPM authentication..."
-        npm whoami || echo "Failed to authenticate with NPM"
-        
     - name: Install dependencies
       run: npm ci
       
@@ -120,6 +107,8 @@ jobs:
       
     - name: Publish to NPM
       run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         
     - name: Create GitHub Release
       uses: actions/create-release@v1
@@ -170,12 +159,6 @@ jobs:
         registry-url: 'https://npm.pkg.github.com'
         cache: 'npm'
         
-    - name: Configure GitHub Packages authentication
-      run: |
-        echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
-        echo "@terlandoberver:registry=https://npm.pkg.github.com" >> ~/.npmrc
-        echo "always-auth=true" >> ~/.npmrc
-        
     - name: Install dependencies
       run: npm ci
       
@@ -188,3 +171,5 @@ jobs:
         
     - name: Publish to GitHub Packages
       run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
