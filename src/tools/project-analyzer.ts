@@ -34,7 +34,7 @@ export class GodotProjectAnalyzer {
     } catch (_error) {
       return {
         success: false,
-        error: error instanceof Error ? error.message : 'Failed to analyze project',
+        error: _error instanceof Error ? _error.message : 'Failed to analyze project',
       };
     }
   }
