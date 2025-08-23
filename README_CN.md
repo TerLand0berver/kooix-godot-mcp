@@ -40,27 +40,46 @@
 
 ## 🚀 快速开始
 
-### 通过 NPM 安装
+### 使用 npx（推荐）
+无需安装！直接运行：
 ```bash
-npm install -g kooix-godot-mcp
+npx kooix-godot-mcp --project /path/to/your/godot/project
 ```
 
 ### 添加到 Claude Desktop
 <details>
-<summary><strong>点击展开安装步骤</strong></summary>
+<summary><strong>点击展开配置步骤</strong></summary>
 
-#### 自动设置（推荐）
-```bash
-claude mcp add godot-mcp kooix-godot-mcp
-```
-
-#### 手动配置
 添加到你的 Claude Desktop 配置文件：
 
 **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 **Linux**: `~/.config/claude/claude_desktop_config.json`
 
+```json
+{
+  "mcpServers": {
+    "godot-mcp": {
+      "command": "npx",
+      "args": ["kooix-godot-mcp", "--project", "/path/to/your/godot/project"]
+    }
+  }
+}
+```
+
+**注意**：将 `/path/to/your/godot/project` 替换为你的 Godot 项目目录的实际路径。
+</details>
+
+### 其他安装方式
+
+<details>
+<summary><strong>通过 NPM 全局安装</strong></summary>
+
+```bash
+npm install -g kooix-godot-mcp
+```
+
+然后在 Claude Desktop 配置中使用：
 ```json
 {
   "mcpServers": {
@@ -72,8 +91,6 @@ claude mcp add godot-mcp kooix-godot-mcp
 }
 ```
 </details>
-
-### 其他安装方式
 
 <details>
 <summary><strong>从 GitHub Packages 安装</strong></summary>
@@ -91,14 +108,6 @@ git clone https://github.com/telagod/kooix-godot-mcp.git
 cd kooix-godot-mcp
 npm install && npm run build
 npm install -g .
-```
-</details>
-
-<details>
-<summary><strong>使用 npx（免安装）</strong></summary>
-
-```bash
-npx kooix-godot-mcp --project /path/to/your/project
 ```
 </details>
 

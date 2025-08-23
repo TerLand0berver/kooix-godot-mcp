@@ -40,27 +40,46 @@ Working with Godot can be challenging when you need to:
 
 ## 🚀 Quick Start
 
-### Install via NPM
+### Using npx (Recommended)
+No installation required! Run directly:
 ```bash
-npm install -g kooix-godot-mcp
+npx kooix-godot-mcp --project /path/to/your/godot/project
 ```
 
 ### Add to Claude Desktop
 <details>
-<summary><strong>Click to expand installation steps</strong></summary>
+<summary><strong>Click to expand configuration steps</strong></summary>
 
-#### Automatic Setup (Recommended)
-```bash
-claude mcp add godot-mcp kooix-godot-mcp
-```
-
-#### Manual Configuration
 Add to your Claude Desktop config file:
 
 **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 **Linux**: `~/.config/claude/claude_desktop_config.json`
 
+```json
+{
+  "mcpServers": {
+    "godot-mcp": {
+      "command": "npx",
+      "args": ["kooix-godot-mcp", "--project", "/path/to/your/godot/project"]
+    }
+  }
+}
+```
+
+**Note**: Replace `/path/to/your/godot/project` with the actual path to your Godot project directory.
+</details>
+
+### Alternative Installation Methods
+
+<details>
+<summary><strong>Global Installation via NPM</strong></summary>
+
+```bash
+npm install -g kooix-godot-mcp
+```
+
+Then use in Claude Desktop config:
 ```json
 {
   "mcpServers": {
@@ -72,8 +91,6 @@ Add to your Claude Desktop config file:
 }
 ```
 </details>
-
-### Alternative Installation Methods
 
 <details>
 <summary><strong>From GitHub Packages</strong></summary>
@@ -91,14 +108,6 @@ git clone https://github.com/telagod/kooix-godot-mcp.git
 cd kooix-godot-mcp
 npm install && npm run build
 npm install -g .
-```
-</details>
-
-<details>
-<summary><strong>Using npx (No Installation)</strong></summary>
-
-```bash
-npx kooix-godot-mcp --project /path/to/your/project
 ```
 </details>
 
